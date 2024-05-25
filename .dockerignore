@@ -1,0 +1,38 @@
+# Tool caches
+**/__pycache__
+**/.mypy_cache/
+
+# Virtual environment & similar
+venv/
+node_modules/
+.envs/
+
+# IDE folders
+.idea/
+.vscode/
+
+# VCS
+.git
+.gitattributes
+.github
+.gitignore
+.gitlab-ci.yml
+
+# Test related
+**/.pytest_cache
+**/tests
+**/*.spec.ts
+**/htmlcov
+
+# Config files
+.python-version
+.editorconfig
+
+# Other
+.pre-commit-config.yaml
+.readthedocs.yml
+.travis.yml
+
+# Custom
+# ------------------------------
+**/ignore/*

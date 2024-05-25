@@ -1,0 +1,62 @@
+exclude: '^docs/|/migrations/|devcontainer.json'
+default_stages: [commit]
+
+default_language_version:
+  python: python3.12
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace # trims trailing whitespace.
+      - id: end-of-file-fixer # ensures that a file is either empty, or ends with one newline.
+      # - id: check-json # attempts to load all json files to verify syntax.
+      - id: check-toml # attempts to load all toml files to verify syntax.
+      - id: check-xml # attempts to load all xml files to verify syntax.
+      - id: check-yaml # attempts to load all yaml files to verify syntax.
+      - id: debug-statements # check for debugger imports and py37+ breakpoint() calls in python source.
+      - id: check-builtin-literals # require literal syntax when initializing empty or zero Python builtin types.
+      - id: check-case-conflict # checks for files that would conflict in case-insensitive filesystems.
+      - id: check-merge-conflict # checks for files that contain merge conflict strings.
+      - id: check-docstring-first # checks for a common error of placing code before the docstring.
+      - id: detect-private-key # detects the presence of private keys.
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v4.0.0-alpha.8
+    hooks:
+      - id: prettier
+        args: ['--tab-width', '2', '--single-quote']
+        exclude: 'qvts/templates/'
+
+  - repo: https://github.com/adamchainz/django-upgrade
+    rev: '1.17.0'
+    hooks:
+      - id: django-upgrade
+        args: ['--target-version', '4.2']
+
+  # Run the Ruff linter.
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.5
+    hooks:
+      # Linter
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+      # Formatter
+      - id: ruff-format
+
+  - repo: https://github.com/Riverside-Healthcare/djLint
+    rev: v1.34.1
+    hooks:
+      - id: djlint-reformat-django
+      - id: djlint-django
+
+  - repo: https://gitlab.com/bmares/check-json5
+    rev: v1.0.0
+    hooks:
+      - id: check-json5
+
+# sets up .pre-commit-ci.yaml to ensure pre-commit dependencies stay up to date
+ci:
+  autoupdate_schedule: weekly
+  skip: []
+  submodules: false

@@ -1,0 +1,7 @@
+alias l='ls -la'
+alias ww="which"
+alias pym="python manage.py"
+alias pymmk="python manage.py makemigrations"
+alias pymm="python manage.py migrate"
+alias pyms="python manage.py shell"
+alias pymsp="python manage.py shell_plus"

@@ -1,0 +1,100 @@
+Project QVTS {
+    Note: '''
+    # QVTS
+    '''
+}
+
+Table BaseModel {
+
+  id int [pk, increment]
+  created_at datetime [note: "Datetime when the record was created"]
+  updated_at datetime [note: "Datetime when the record was last updated"]
+  uuid varchar(255) [note: "UUID4 - Public unique identifier for the record"]
+
+  Note: '''
+    ========================
+         ABSTRACT MODEL
+    ========================
+    All tables should inherit from this model
+  '''
+}
+
+// ------------------------------------------------------------------
+
+Table ContactPerson {
+  id int [pk, increment]
+
+  name varchar(100)
+  phone varchar(20)
+  email varchar(255)
+
+  Note: "Contact persons for operating companies"
+}
+
+Table OperatingCompany {
+  id int [pk, increment]
+
+  name varchar(100)
+
+  contact_person int [ref: > ContactPerson.id]
+
+  Note: "Operating companies managing ships"
+}
+
+Table Ship {
+  id int [pk, increment]
+
+  name varchar(100) [not null]
+  tonnage int [not null]
+  draft_max_load float [not null]
+  draft_dry float [not null]
+  type varchar(50) [not null, note: '''
+    Choices:
+    - Bulk carrier
+    - Fishing
+    - Submarine
+    - Tanker
+    - Cruise ship
+  ''']
+  beam float [not null]
+  length float [not null]
+  flag varchar(100)
+  year_built int
+
+  operating_company_id int [ref: > OperatingCompany.id]
+
+  Note: "Details of ships"
+}
+
+Table Harbour {
+  id int [pk, increment]
+
+  name varchar(100)
+  berth_depth_max float
+  harbour_master varchar(100)
+
+  location int [ref: > Location.id]
+
+  Note: "Details of harbours"
+}
+
+Table Location {
+  id int [pk, increment]
+
+  city varchar(100)
+  country varchar(100)
+
+  Note: "Cities"
+}
+
+Table ShipMovement {
+  id int [pk, increment]
+
+  entered_at datetime
+  exited_at datetime [null]
+
+  ship_id int [ref: > Ship.id]
+  harbour_id int [ref: > Harbour.id]
+
+  Note: "Records of ship movements in and out of harbours"
+}
