@@ -19,7 +19,8 @@ def create_ship(validated_data, try_get=False) -> Ship:  # noqa: FBT002
     )
     if try_get:
         try:
-            return Ship.objects.get_or_create(operating_company=operating_company, **validated_data)
+            ship, _ = Ship.objects.get_or_create(operating_company=operating_company, **validated_data)
+            return ship  # noqa: TRY300
         except MultipleObjectsReturned:
             return Ship.objects.create(operating_company=operating_company, **validated_data)
     return Ship.objects.create(operating_company=operating_company, **validated_data)
