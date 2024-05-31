@@ -36,7 +36,7 @@ Table OperatingCompany {
 
   name varchar(100)
 
-  contact_person int [ref: > ContactPerson.id]
+  contact_person int [null, ref: > ContactPerson.id]
 
   Note: "Operating companies managing ships"
 }
@@ -61,7 +61,7 @@ Table Ship {
   flag varchar(100)
   year_built int
 
-  operating_company_id int [ref: > OperatingCompany.id]
+  operating_company_id int [null, ref: > OperatingCompany.id]
 
   Note: "Details of ships"
 }
@@ -74,6 +74,7 @@ Table Harbour {
   harbour_master varchar(100)
 
   location int [ref: > Location.id]
+  vts_centre int [ref: > VTSCentre.id]
 
   Note: "Details of harbours"
 }
@@ -84,7 +85,7 @@ Table Location {
   city varchar(100)
   country varchar(100)
 
-  Note: "Cities"
+  Note: "Location of harbours"
 }
 
 Table ShipMovement {
@@ -97,4 +98,39 @@ Table ShipMovement {
   harbour_id int [ref: > Harbour.id]
 
   Note: "Records of ship movements in and out of harbours"
+}
+
+// ------------------------------------------------------------------
+
+Table User {
+  id int [pk, increment]
+
+  password varchar(255)
+  email varchar(255)
+
+  Note: "Users of the system aka the VTS Operators"
+}
+
+Table Operator {
+  id int [pk, increment]
+
+  role varchar(50) [note: '''
+    Role of the operator in the VTS Centre
+    e.g.: Junior Operator, Senior Operator, etc.
+  ''']
+
+  vts_centre int [ref: > VTSCentre.id]
+  user int [ref: - User.id]
+
+  Note: "Operators of the VTS Centre"
+}
+
+Table VTSCentre {
+  id int [pk, increment]
+
+  name varchar(100)
+  phone varchar(20)
+  email varchar(255)
+
+  Note: "Vessel Traffic Service Centre"
 }

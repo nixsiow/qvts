@@ -1,0 +1,42 @@
+[
+  {
+    "model": "account.EmailAddress",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "email": "admin@qvts.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.EmailAddress",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "email": "m.scott@qvts.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.EmailAddress",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "email": "d.schrute@qvts.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.EmailAddress",
+    "pk": 4,
+    "fields": {
+      "user": 4,
+      "email": "j.halpert@qvts.com",
+      "verified": true,
+      "primary": true
+    }
+  }
+]

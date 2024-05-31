@@ -25,8 +25,10 @@ urlpatterns = [
 urlpatterns += [
     # API base url
     path("api/", include("config.api_router")),
+    # DRF auth basic
+    path("api/auth/", include("rest_framework.urls")),
     # DRF auth token
-    path("api/auth-token/", obtain_auth_token),
+    path("api/auth/token/", obtain_auth_token),
     path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
     path(
         "api/docs/",
@@ -60,3 +62,8 @@ if settings.DEBUG:
         import debug_toolbar
 
         urlpatterns = [path("__debug__/", include(debug_toolbar.urls))] + urlpatterns
+
+# API error handlers
+handler500 = "rest_framework.exceptions.server_error"
+handler400 = "rest_framework.exceptions.bad_request"
+handler404 = "qvts.core.views.handler404"

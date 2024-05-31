@@ -7,14 +7,17 @@ A backend API system that is being developed for Queensland Vessel Traffic Servi
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Code style: djlint](https://img.shields.io/badge/html%20style-djlint-blue.svg)](https://www.djlint.com)
 
-[![Build status][badge:GithubActions:CI]][GithubActions:CI]
-[![Code Quality][badge:GithubActions:CQ]][GithubActions:CQ]
+<!-- [![Build status][badge:GithubActions:CI]][GithubActions:CI] -->
+<!-- [![Code Quality][badge:GithubActions:CQ]][GithubActions:CQ] -->
 
-## Links
+## Resources
 
-- [Task description](https://placeholder)
+### ERD
 
-TODO
+<!-- - ![ERD](./resources/db.svg) -->
+<img alt="ERD" src="./resources/db.svg" width="500" height="500" />
+
+Note: Non-code project resources are located in the `resources` directory.
 
 ## General
 
@@ -46,11 +49,14 @@ $ pre-commit run --all-files
 This can take a while, especially the first time you run this particular command on your development system::
 
 ```bash
+# set compose file environment variable
+$ export COMPOSE_FILE=docker-compose.local.yml
+
 # build the stack
-$ docker compose -f docker-compose.local.yml build
+$ docker compose build
 
 # rebuild just the a specific service
-$ docker compose -f docker-compose.local.yml build <service-name>
+$ docker compose build <service-name>
 ```
 
 #### Run the Stack
@@ -60,28 +66,20 @@ This brings up both Django and PostgreSQL. The first time it is run it might tak
 Open a terminal at the project root and run the following for local development::
 
 ```bash
-# run the stack
-$ docker compose -f docker-compose.local.yml up
-
-# run the stack in detached mode
-$ docker compose -f docker-compose.local.yml up -d
-```
-
-You can also set the environment variable `COMPOSE_FILE` pointing to `docker-compose.local.yml` like this::
-
-```bash
 # set compose file environment variable
 $ export COMPOSE_FILE=docker-compose.local.yml
-```
 
-And then run::
-
-```bash
 # run the stack
 $ docker compose up
+
+# run the stack in detached mode
+$ docker compose up -d
+
+# inspect the running containers
+$ docker compose ps
 ```
 
-The site should start and be accessible at [http://localhost:3000](http://localhost:3000) as the proxy of [http://localhost:8000](http://localhost:8000).
+The site should start and be accessible at [http://localhost:4000](http://localhost:4000) as the proxy of [http://localhost:8000](http://localhost:8000).
 
 #### Debugging
 
@@ -93,8 +91,11 @@ ipdb.set_trace()
 Then run it with:
 
 ```bash
+# set compose file environment variable
+$ export COMPOSE_FILE=docker-compose.local.yml
+
 # run the container for debugging
-$ docker compose -f docker-compose.local.yml run --rm --service-ports django
+$ docker compose run --rm --service-ports django
 ```
 
 #### Execute Management Commands
@@ -102,11 +103,32 @@ $ docker compose -f docker-compose.local.yml run --rm --service-ports django
 As with any shell command that we wish to run in our container, this is done using the `docker compose -f docker-compose.local.yml run --rm` command:
 
 ```bash
+# set compose file environment variable
+$ export COMPOSE_FILE=docker-compose.local.yml
+
 # migration
-$ docker compose -f docker-compose.local.yml run --rm django python manage.py migrate
+$ docker compose run --rm django python manage.py migrate
 
 # create superuser
-$ docker compose -f docker-compose.local.yml run --rm django python manage.py createsuperuser
+$ docker compose run --rm django python manage.py createsuperuser
+
+# run django shell plus (django-extensions)
+$ docker compose run --rm django python manage.py shell_plus
+```
+
+#### Devcontainer setup
+
+The project comes with a `.devcontainer` folder that contains the configuration for a development container. The development container is configured to run the project with all the necessary dependencies.
+
+To use the development container, you need to have the [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed in VSCode.
+
+#### Load seed data
+
+To load seed data, run the following command:
+
+```bash
+# run bash script to load fixtures
+$ ./load_fixtures.sh
 ```
 
 ### Environment variables
@@ -203,35 +225,38 @@ Certain extensions are expected to be installed in VSCode. The list of extension
 To run the tests, check your test coverage, and generate an HTML coverage report:
 
 ```bash
-# prepend below commands with `docker compose -f docker-compose.local.yml run --rm django` if run outside of the container
-# like so:
-$ docker compose -f docker-compose.local.yml run --rm django coverage run -m pytest
+# set compose file environment variable
+$ export COMPOSE_FILE=docker-compose.local.yml
 
 # to run the tests
+$ docker compose run --rm django coverage run -m pytest
+
+# to run the tests (inside devcontainer)
 $ coverage run -m pytest
 
-# to report on the results
+# to report on the results (inside devcontainer)
 $ coverage report
 
-# to generate an HTML coverage report
+# to generate an HTML coverage report (inside devcontainer)
 $ coverage html
 $ open htmlcov/index.html
 
-# to erase all the coverage data
+# to erase all the coverage data (inside devcontainer)
 $ coverage erase
 ```
+
+Note: prepend the commands with `docker compose -f docker-compose.local.yml run --rm django` if running outside of the container.
 
 #### Running tests with pytest
 
 ```bash
-# Running tests with pytest
-$ pytest
-
-# to run specific tests
-$ pytest tests/test_models.py
-
-# to run tests with verbose output
+# Running tests with pytest with verbose output (inside devcontainer)
 $ pytest -rP
+
+# if running outside of the container
+# set compose file environment variable
+$ export COMPOSE_FILE=docker-compose.local.yml
+$ docker compose run --rm django pytest -rP
 ```
 
 ### Live reloading and Sass CSS compilation
@@ -240,7 +265,7 @@ $ pytest -rP
 
 Webpack as front-end pipeline, the project comes configured with [Sass](https://sass-lang.com/) compilation and [live reloading](https://browsersync.io). As you change your Sass/JS source files, the task runner will automatically rebuild the corresponding CSS and JS assets and reload them in your browser without refreshing the page.
 
-The stack comes with a dedicated node service to build the static assets, watch for changes and proxy requests to the Django app with live reloading scripts injected in the response. For everything to work smoothly, you need to access the application at the port served by the node service, which is [http://localhost:3000](http://localhost:3000) by default.
+The stack comes with a dedicated node service to build the static assets, watch for changes and proxy requests to the Django app with live reloading scripts injected in the response. For everything to work smoothly, you need to access the application at the port served by the node service, which is [http://localhost:4000](http://localhost:4000) by default.
 
 ### Email Server (Development only)
 
@@ -250,67 +275,85 @@ Container mailpit will start automatically when you will run all docker containe
 
 With Mailpit running, to view messages that are sent by your application, open your browser and go to `http://127.0.0.1:8025`
 
-### Staging
-
-TODO
-
 ## Deployment
 
-TODO
-
 ```bash
+# set compose file environment variable
+$ export COMPOSE_FILE=docker-compose.production.yml
+
 # build the stack first
-$ docker compose -f docker-compose.production.yml build
+$ docker compose build
 
 # run the stack
-$ docker compose -f docker-compose.production.yml up
+$ docker compose up
 
 # or run the stack and detach the containers
-$ docker compose -f docker-compose.production.yml up -d
+$ docker compose up -d
 
 # To run a migration, open up a second terminal and run:
-$ docker compose -f docker-compose.production.yml run --rm django python manage.py migrate
+$ docker compose run --rm django python manage.py migrate
 
 # To create a superuser, run:
-$ docker compose -f docker-compose.production.yml run --rm django python manage.py createsuperuser
+$ docker compose run --rm django python manage.py createsuperuser
 
 # To run a shell, run:
-$ docker compose -f docker-compose.production.yml run --rm django python manage.py shell
+$ docker compose run --rm django python manage.py shell
 
 # To check the logs out, run:
-$ docker compose -f docker-compose.production.yml logs
+$ docker compose logs
 
 # To scale your application, run:
 # Warning: don’t try to scale postgres.
-$ docker compose -f docker-compose.production.yml up --scale django=4
+$ docker compose up --scale django=4
 
 # To see how your containers are doing run:
-$ docker compose -f docker-compose.production.yml ps
+$ docker compose ps
 ```
 
-### Docker
-
-TODO
+To merge `.envs/.production/*` in a single `.env` (if required):
 
 ```bash
-
-# run django shell
-$ docker compose run --rm django python manage.py shell_plus
-
+# merge production envs in a single `.env`
+$ python merge_production_dotenvs_in_dotenv.py
 ```
 
 ### Postgresql database backup and restore
 
-TODO
+View backups by running the following command:
 
-### Custom Bootstrap Compilation
+```bash
+# set compose file environment variable
+$ export COMPOSE_FILE=docker-compose.production.yml
 
-The generated CSS is set up with automatic Bootstrap recompilation with variables of your choice.
-Bootstrap v5 is installed using npm and customised by tweaking your variables in `static/sass/custom_bootstrap_vars`.
+# view backups:
+$ docker compose run --rm postgres backups
 
-List of available variables [in the bootstrap source](https://github.com/twbs/bootstrap/blob/v5.1.3/scss/_variables.scss), or get explanations on them in the [Bootstrap docs](https://getbootstrap.com/docs/5.1/customize/sass/).
+# Create a database backup: (note: the backup will be stored in the `BACKUP_DIR_PATH` directory)
+$ docker compose run --rm postgres backup
 
-<!-- Bootstrap's javascript as well as its dependencies are concatenated into a single file: `static/js/vendors.js`. -->
+# Restore a database backup: (note: ensure all connections to the database are closed before restoring)
+$ docker compose run --rm postgres restore <backup-file-name>
+
+# Remove a database backup:
+$ docker compose run --rm postgres rmbackup <backup-file-name>
+```
+
+#### Backup to Amazon S3
+
+Use the aws cli container to upload and download backups to and from Amazon S3.
+Use the following commands to upload and download backups to and from Amazon S3.
+The upload command uploads the postgres `/backups` directory recursively, and the download command downloads a specific backup.
+
+```bash
+# set compose file environment variable
+$ export COMPOSE_FILE=docker-compose.production.yml
+
+# upload a backup to S3
+$ docker compose run --rm awscli upload
+
+# download a backup from S3
+$ docker compose run --rm awscli download <backup_filename>.sql.gz
+```
 
 ### Documentation
 
@@ -354,19 +397,16 @@ GitHub Actions is used for CI. The workflow is defined in `.github/workflows/ci.
 
 The workflow is triggered on:
 
-- every push to the `main`, `staging` and `dev` branch.
-- every pull request to the `main`, `staging` and `dev` branch.
+- every push to the `main` and `dev` branch.
+- every pull request to the `main` and `dev` branch.
 - manually by clicking the `Run workflow` button on the Actions page.
 
 ### Branching strategy
 
 - `main` branch --> production branch
-- `staging` branch --> staging branch
 - `dev` branch --> development branch
 
 All feature branches are branched from `dev` and merged back to `dev` when ready. All pull requests are made to `dev` branch.
-
-When `dev` is ready to be deployed to production, it is first merged into `staging` and then `staging` is merged into `main` once it is tested on staging.
 
 #### Branch naming convention
 
@@ -428,9 +468,14 @@ Follow the template provided. All pull requests should be made to the `dev` bran
 
 ## External References
 
-TODO
+- [Django](https://www.djangoproject.com/)
+- [Django REST framework](https://www.django-rest-framework.org/)
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+- [Sphinx](https://www.sphinx-doc.org/en/master/)
+- [Ruff](https://docs.astral.sh/ruff/)
 
-[GithubActions:CI]: https://github.com/nixsiow/qvts/actions?query=workflow%3A%22Run+CI%22
-[badge:GithubActions:CI]: https://github.com/nixsiow/qvts/workflows/Run%20CI/badge.svg
-[GithubActions:CQ]: https://github.com/nixsiow/qvts/actions?query=workflow%3A%22Code+quality+checks%22
-[badge:GithubActions:CQ]: https://github.com/nixsiow/qvts/workflows/Code%20quality%20checks/badge.svg
+<!-- [GithubActions:CI]: https://github.com/nixsiow/qvts/actions?query=workflow%3A%22Run+CI%22 -->
+<!-- [badge:GithubActions:CI]: https://github.com/nixsiow/qvts/workflows/Run%20CI/badge.svg -->
+<!-- [GithubActions:CQ]: https://github.com/nixsiow/qvts/actions?query=workflow%3A%22Code+quality+checks%22 -->
+<!-- [badge:GithubActions:CQ]: https://github.com/nixsiow/qvts/workflows/Code%20quality%20checks/badge.svg -->

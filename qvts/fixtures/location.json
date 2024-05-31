@@ -1,0 +1,102 @@
+[
+  {
+    "model": "harbours.Location",
+    "pk": 1,
+    "fields": {
+      "city": "New York",
+      "country": "USA",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "harbours.Location",
+    "pk": 2,
+    "fields": {
+      "city": "Tokyo",
+      "country": "Japan",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "harbours.Location",
+    "pk": 3,
+    "fields": {
+      "city": "London",
+      "country": "UK",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "harbours.Location",
+    "pk": 4,
+    "fields": {
+      "city": "Paris",
+      "country": "France",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "harbours.Location",
+    "pk": 5,
+    "fields": {
+      "city": "Berlin",
+      "country": "Germany",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "harbours.Location",
+    "pk": 6,
+    "fields": {
+      "city": "MacKay",
+      "country": "Australia",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "harbours.Location",
+    "pk": 7,
+    "fields": {
+      "city": "Brisbane",
+      "country": "Australia",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "harbours.Location",
+    "pk": 8,
+    "fields": {
+      "city": "Cairns",
+      "country": "Australia",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "harbours.Location",
+    "pk": 9,
+    "fields": {
+      "city": "Gladstone",
+      "country": "Australia",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "harbours.Location",
+    "pk": 10,
+    "fields": {
+      "city": "Townsville",
+      "country": "Australia",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  }
+]

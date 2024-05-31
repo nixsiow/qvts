@@ -1,3 +1,4 @@
+const path = require('path');
 const { merge } = require('webpack-merge');
 const commonConfig = require('./common.config');
 
@@ -5,7 +6,7 @@ module.exports = merge(commonConfig, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
-    port: 3000,
+    port: 4000,
     proxy: [
       {
         context: ['/'],
@@ -22,5 +23,6 @@ module.exports = merge(commonConfig, {
     // We need hot=false (Disable HMR) to set liveReload=true
     hot: false,
     liveReload: true,
+    watchFiles: [path.resolve(__dirname, '../qvts/templates/**/*.html')],
   },
 });

@@ -1,0 +1,58 @@
+{% load static i18n %}
+{% load render_bundle from webpack_loader %}
+
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>
+      {% block title %}
+        Queensland Vessel Traffic Service
+      {% endblock title %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+          content="A backend API system that is being developed for Queensland Vessel Traffic Service (QVTS) operators." />
+    <meta name="author" content="ns" />
+    {# =============================================== #}
+    {#                     Favicons                    #}
+    {# =============================================== #}
+    <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}" />
+    <link rel="apple-touch-icon"
+          sizes="180x180"
+          href="{% static 'images/favicons/apple-touch-icon.png' %}" />
+    <link rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="{% static 'images/favicons/favicon-32x32.png' %}" />
+    <link rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="{% static 'images/favicons/favicon-16x16.png' %}" />
+    <link rel="shortcut icon"
+          type="image/x-icon"
+          href="{% static 'images/favicons/favicon.ico' %}" />
+    <link rel="manifest" href="{% static 'images/favicons/manifest.json' %}" />
+    {% block css %}
+      {% render_bundle 'project' 'css' %}
+    {% endblock css %}
+    {# Placed at the top of the document so pages load faster with defer #}
+    {% block javascript %}
+      {% render_bundle 'vendors' 'js' attrs='defer' %}
+      {% render_bundle 'project' 'js' attrs='defer' %}
+    {% endblock javascript %}
+  </head>
+  <body class="{% block bodyclass %}{% endblock bodyclass %}">
+    {% block body %}
+      <div class="container">
+        {% block main %}
+          {% block content %}
+          {% endblock content %}
+        {% endblock main %}
+      </div>
+    {% endblock body %}
+    <!-- /container -->
+  </body>
+</html>

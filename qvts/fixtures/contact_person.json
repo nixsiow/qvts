@@ -1,0 +1,57 @@
+[
+  {
+    "model": "ships.ContactPerson",
+    "pk": 1,
+    "fields": {
+      "name": "John Doe",
+      "phone": "+1234567890",
+      "email": "john.doe@company1.com",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "ships.ContactPerson",
+    "pk": 2,
+    "fields": {
+      "name": "Jane Smith",
+      "phone": "+0987654321",
+      "email": "jane.smith@company2.com",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "ships.ContactPerson",
+    "pk": 3,
+    "fields": {
+      "name": "Alice Johnson",
+      "phone": "+1234567890",
+      "email": "alice.johnson@company3.com",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "ships.ContactPerson",
+    "pk": 4,
+    "fields": {
+      "name": "Bob Brown",
+      "phone": "+0987654321",
+      "email": "bob.brown@company4.com",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "ships.ContactPerson",
+    "pk": 5,
+    "fields": {
+      "name": "Charlie White",
+      "phone": "+1234567890",
+      "email": "charlie.white@company5.com",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  }
+]

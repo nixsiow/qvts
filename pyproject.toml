@@ -25,7 +25,7 @@ repository = "https://github.com/nixsiow/qvts"
 # ==== pytest ====
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = "--ds=config.settings.test --reuse-db --import-mode=importlib"
+addopts = "--ds=config.settings.test --reuse-db --import-mode=importlib --ignore=ignore"
 python_files = [
     "tests.py",
     "test_*.py",

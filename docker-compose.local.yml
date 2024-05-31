@@ -1,7 +1,7 @@
 volumes:
-  qvts_local_postgres_data: {}
-  qvts_local_postgres_data_backups: {}
-  qvts_local_redis_data: {}
+  local_postgres_data: {}
+  local_postgres_data_backups: {}
+  local_redis_data: {}
 
 services:
   django:
@@ -30,8 +30,8 @@ services:
     image: qvts_production_postgres
     container_name: qvts_local_postgres
     volumes:
-      - qvts_local_postgres_data:/var/lib/postgresql/data
-      - qvts_local_postgres_data_backups:/backups
+      - local_postgres_data:/var/lib/postgresql/data
+      - local_postgres_data_backups:/backups
     env_file:
       - ./.envs/.local/.postgres
 
@@ -45,7 +45,7 @@ services:
     image: docker.io/redis:6
     container_name: qvts_local_redis
     volumes:
-      - qvts_local_redis_data:/data
+      - local_redis_data:/data
 
   node:
     build:
@@ -61,4 +61,4 @@ services:
       - /app/node_modules
     command: npm run dev
     ports:
-      - '3000:3000'
+      - '4000:4000'

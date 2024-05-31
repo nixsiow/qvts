@@ -71,8 +71,8 @@ DJANGO_APPS = [
     "django.forms",
 ]
 THIRD_PARTY_APPS = [
-    # "crispy_forms",
-    # "crispy_bootstrap5",
+    "crispy_forms",
+    "crispy_bootstrap5",
     "allauth",
     "allauth.account",
     "allauth.mfa",
@@ -90,6 +90,9 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "qvts.core",
     "qvts.users",
+    "qvts.harbours",
+    "qvts.ships",
+    "qvts.vts",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -212,8 +215,8 @@ TEMPLATES = [
 FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 
 # http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
-# CRISPY_TEMPLATE_PACK = "bootstrap5"
-# CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 # FIXTURES
 # ------------------------------------------------------------------------------
@@ -226,6 +229,9 @@ FIXTURE_DIRS = (str(APPS_DIR / "fixtures"),)
 SESSION_COOKIE_HTTPONLY = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#csrf-cookie-httponly
 CSRF_COOKIE_HTTPONLY = True
+CSRF_TRUSTED_ORIGINS = [
+    # "example.com",
+]
 # https://docs.djangoproject.com/en/dev/ref/settings/#x-frame-options
 X_FRAME_OPTIONS = "DENY"
 
@@ -319,16 +325,21 @@ SOCIALACCOUNT_FORMS = {"signup": "qvts.users.forms.UserSocialSignupForm"}
 
 # django-rest-framework
 # -------------------------------------------------------------------------------
-# django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
+# https://www.django-rest-framework.org/api-guide/settings/
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
         "rest_framework.authentication.TokenAuthentication",
         # "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
     ),
+    "DEFAULT_RENDERER_CLASSES": [
+        "rest_framework.renderers.JSONRenderer",
+        "rest_framework.renderers.BrowsableAPIRenderer",
+    ],
     # https://www.django-rest-framework.org/api-guide/permissions/#setting-the-permission-policy
-    # "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    # "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",),
     # https://drf-spectacular.readthedocs.io/en/latest/readme.html
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     # https://www.django-rest-framework.org/api-guide/throttling/
@@ -342,8 +353,7 @@ REST_FRAMEWORK = {
 # drf-spectacular
 # https://drf-spectacular.readthedocs.io/en/latest/readme.html
 # -------------------------------------------------------------------------------
-# By Default swagger ui is available only to admin user(s). You can change permission classes to change that
-# See more configuration options at https://drf-spectacular.readthedocs.io/en/latest/settings.html#settings
+# https://drf-spectacular.readthedocs.io/en/latest/settings.html#settings
 SPECTACULAR_SETTINGS = {
     "TITLE": "Queensland Vessel Traffic Service API",
     "DESCRIPTION": "Documentation of API endpoints of Queensland Vessel Traffic Service",
@@ -362,7 +372,7 @@ SPECTACULAR_SETTINGS = {
     },
     # Self-contained UI (Sidecar)
     "SWAGGER_UI_DIST": "SIDECAR",
-    # "SWAGGER_UI_FAVICON_HREF": STATIC_URL + "images/favicons/favicon-32x32.png",
+    "SWAGGER_UI_FAVICON_HREF": STATIC_URL + "images/favicons/favicon-32x32.png",
 }
 
 # dj-rest-auth
@@ -411,12 +421,13 @@ SPECTACULAR_SETTINGS = {
 # -------------------------------------------------------------------------------
 # https://github.com/adamchainz/django-cors-headers#setup
 CORS_URLS_REGEX = r"^/api/.*$"
-# CORS_ALLOWED_ORIGINS = [
-#     "https://example.com",
-#     "https://sub.example.com",
-#     "http://localhost:8080",
-#     "http://127.0.0.1:9000",
-# ]
+CORS_ALLOWED_ORIGINS = [
+    # "https://example.com",
+    # "https://sub.example.com",
+    # "http://127.0.0.1:9000",
+    # "http://localhost:4000",
+    # "http://localhost:3000",
+]
 
 # django-webpack-loader
 # ------------------------------------------------------------------------------

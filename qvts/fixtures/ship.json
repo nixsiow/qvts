@@ -1,0 +1,236 @@
+[
+  {
+    "model": "ships.Ship",
+    "pk": 1,
+    "fields": {
+      "name": "SS Enterprise",
+      "tonnage": 50000,
+      "draft_max_load": 10.5,
+      "draft_dry": 7.0,
+      "type": "bulk_carrier",
+      "beam": 30.0,
+      "length": 250.0,
+      "flag": "AC",
+      "year_built": 2000,
+      "operating_company": 1,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "ships.Ship",
+    "pk": 2,
+    "fields": {
+      "name": "SS Voyager",
+      "tonnage": 75000,
+      "draft_max_load": 12.0,
+      "draft_dry": 8.0,
+      "type": "tanker",
+      "beam": 35.0,
+      "length": 300.0,
+      "flag": "AN",
+      "year_built": 2010,
+      "operating_company": 2,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "ships.Ship",
+    "pk": 3,
+    "fields": {
+      "name": "SS Defiant",
+      "tonnage": 100000,
+      "draft_max_load": 15.0,
+      "draft_dry": 10.0,
+      "type": "fishing",
+      "beam": 40.0,
+      "length": 350.0,
+      "flag": "BR",
+      "year_built": 2015,
+      "operating_company": 3,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "ships.Ship",
+    "pk": 4,
+    "fields": {
+      "name": "SS Discovery",
+      "tonnage": 50000,
+      "draft_max_load": 10.5,
+      "draft_dry": 7.0,
+      "type": "bulk_carrier",
+      "beam": 30.0,
+      "length": 250.0,
+      "flag": "CB",
+      "year_built": 2000,
+      "operating_company": 1,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "ships.Ship",
+    "pk": 5,
+    "fields": {
+      "name": "SS Atlantis",
+      "tonnage": 75000,
+      "draft_max_load": 12.0,
+      "draft_dry": 8.0,
+      "type": "tanker",
+      "beam": 35.0,
+      "length": 300.0,
+      "flag": "DW",
+      "year_built": 2010,
+      "operating_company": 2,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "ships.Ship",
+    "pk": 6,
+    "fields": {
+      "name": "Open Sea",
+      "tonnage": 100000,
+      "draft_max_load": 15.0,
+      "draft_dry": 10.0,
+      "type": "submarine",
+      "beam": 40.0,
+      "length": 350.0,
+      "flag": "FA",
+      "year_built": 2015,
+      "operating_company": 3,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "ships.Ship",
+    "pk": 7,
+    "fields": {
+      "name": "SS Wormhole",
+      "tonnage": 50000,
+      "draft_max_load": 10.5,
+      "draft_dry": 7.0,
+      "type": "bulk_carrier",
+      "beam": 30.0,
+      "length": 250.0,
+      "flag": "GM",
+      "year_built": 2000,
+      "operating_company": 1,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "ships.Ship",
+    "pk": 8,
+    "fields": {
+      "name": "Starlight",
+      "tonnage": 75000,
+      "draft_max_load": 12.0,
+      "draft_dry": 8.0,
+      "type": "cruise_ship",
+      "beam": 35.0,
+      "length": 300.0,
+      "flag": "HM",
+      "year_built": 2010,
+      "operating_company": 2,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "ships.Ship",
+    "pk": 9,
+    "fields": {
+      "name": "South Star",
+      "tonnage": 100000,
+      "draft_max_load": 15.0,
+      "draft_dry": 10.0,
+      "type": "fishing",
+      "beam": 40.0,
+      "length": 350.0,
+      "flag": "MS",
+      "year_built": 2015,
+      "operating_company": 3,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "ships.Ship",
+    "pk": 10,
+    "fields": {
+      "name": "Warp",
+      "tonnage": 50000,
+      "draft_max_load": 10.5,
+      "draft_dry": 7.0,
+      "type": "submarine",
+      "beam": 30.0,
+      "length": 250.0,
+      "flag": "QT",
+      "year_built": 2000,
+      "operating_company": 1,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "ships.Ship",
+    "pk": 11,
+    "fields": {
+      "name": "SS Black Hole",
+      "tonnage": 75000,
+      "draft_max_load": 12.0,
+      "draft_dry": 8.0,
+      "type": "tanker",
+      "beam": 35.0,
+      "length": 300.0,
+      "flag": "PL",
+      "year_built": 2010,
+      "operating_company": 2,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "ships.Ship",
+    "pk": 12,
+    "fields": {
+      "name": "SS Starlight",
+      "tonnage": 100000,
+      "draft_max_load": 15.0,
+      "draft_dry": 10.0,
+      "type": "cruise_ship",
+      "beam": 40.0,
+      "length": 350.0,
+      "flag": "PL",
+      "year_built": 2015,
+      "operating_company": 3,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "ships.Ship",
+    "pk": 13,
+    "fields": {
+      "name": "USS Horizon",
+      "tonnage": 50000,
+      "draft_max_load": 10.5,
+      "draft_dry": 7.0,
+      "type": "bulk_carrier",
+      "beam": 30.0,
+      "length": 250.0,
+      "flag": "AC",
+      "year_built": 2000,
+      "operating_company": 1,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  }
+]

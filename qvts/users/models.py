@@ -25,12 +25,6 @@ class User(BaseModel, AbstractUser):
         max_length=255,
         help_text=_("Email address of user"),
     )
-    role = models.CharField(
-        _("role"),
-        max_length=100,
-        blank=True,
-        help_text=_("Role of user"),
-    )
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

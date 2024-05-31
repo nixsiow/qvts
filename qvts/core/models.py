@@ -34,4 +34,4 @@ class BaseModel(models.Model):
         Returns:
             str: UUID of object.
         """
-        return self.uuid
+        return str(self.uuid)

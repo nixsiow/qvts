@@ -1,0 +1,905 @@
+openapi: 3.0.3
+info:
+  title: Queensland Vessel Traffic Service API
+  version: 1.0.0
+  description: Documentation of API endpoints of Queensland Vessel Traffic Service
+paths:
+  /api/auth/token/:
+    post:
+      operationId: auth_token_create
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+        required: true
+      security:
+        - cookieAuth: []
+        - basicAuth: []
+        - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
+          description: ''
+  /api/harbours/:
+    get:
+      operationId: harbours_list
+      tags:
+        - harbours
+      security:
+        - cookieAuth: []
+        - basicAuth: []
+        - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HarbourList'
+          description: ''
+    post:
+      operationId: harbours_create
+      tags:
+        - harbours
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Harbour'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Harbour'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Harbour'
+        required: true
+      security:
+        - cookieAuth: []
+        - basicAuth: []
+        - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Harbour'
+          description: ''
+  /api/harbours/{id}/:
+    get:
+      operationId: harbours_retrieve
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this harbour.
+          required: true
+      tags:
+        - harbours
+      security:
+        - cookieAuth: []
+        - basicAuth: []
+        - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Harbour'
+          description: ''
+    put:
+      operationId: harbours_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this harbour.
+          required: true
+      tags:
+        - harbours
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Harbour'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Harbour'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Harbour'
+        required: true
+      security:
+        - cookieAuth: []
+        - basicAuth: []
+        - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Harbour'
+          description: ''
+    patch:
+      operationId: harbours_partial_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this harbour.
+          required: true
+      tags:
+        - harbours
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedHarbour'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedHarbour'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedHarbour'
+      security:
+        - cookieAuth: []
+        - basicAuth: []
+        - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Harbour'
+          description: ''
+  /api/ship_movements/:
+    get:
+      operationId: ship_movements_list
+      tags:
+        - ship_movements
+      security:
+        - cookieAuth: []
+        - basicAuth: []
+        - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ShipMovementList'
+          description: ''
+    post:
+      operationId: ship_movements_create
+      tags:
+        - ship_movements
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShipMovement'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ShipMovement'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ShipMovement'
+        required: true
+      security:
+        - cookieAuth: []
+        - basicAuth: []
+        - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipMovement'
+          description: ''
+  /api/ship_movements/{id}/:
+    get:
+      operationId: ship_movements_retrieve
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this ship movement.
+          required: true
+      tags:
+        - ship_movements
+      security:
+        - cookieAuth: []
+        - basicAuth: []
+        - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipMovementDetail'
+          description: ''
+    put:
+      operationId: ship_movements_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this ship movement.
+          required: true
+      tags:
+        - ship_movements
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShipMovement'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ShipMovement'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ShipMovement'
+        required: true
+      security:
+        - cookieAuth: []
+        - basicAuth: []
+        - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipMovement'
+          description: ''
+    patch:
+      operationId: ship_movements_partial_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this ship movement.
+          required: true
+      tags:
+        - ship_movements
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedShipMovement'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedShipMovement'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedShipMovement'
+      security:
+        - cookieAuth: []
+        - basicAuth: []
+        - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipMovement'
+          description: ''
+  /api/ships/:
+    get:
+      operationId: ships_list
+      tags:
+        - ships
+      security:
+        - cookieAuth: []
+        - basicAuth: []
+        - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ShipList'
+          description: ''
+    post:
+      operationId: ships_create
+      tags:
+        - ships
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ship'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Ship'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Ship'
+        required: true
+      security:
+        - cookieAuth: []
+        - basicAuth: []
+        - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ship'
+          description: ''
+  /api/ships/{id}/:
+    get:
+      operationId: ships_retrieve
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this ship.
+          required: true
+      tags:
+        - ships
+      security:
+        - cookieAuth: []
+        - basicAuth: []
+        - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ship'
+          description: ''
+    put:
+      operationId: ships_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this ship.
+          required: true
+      tags:
+        - ships
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ship'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Ship'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Ship'
+        required: true
+      security:
+        - cookieAuth: []
+        - basicAuth: []
+        - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ship'
+          description: ''
+    patch:
+      operationId: ships_partial_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this ship.
+          required: true
+      tags:
+        - ships
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedShip'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedShip'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedShip'
+      security:
+        - cookieAuth: []
+        - basicAuth: []
+        - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ship'
+          description: ''
+components:
+  schemas:
+    AuthToken:
+      type: object
+      properties:
+        username:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+        token:
+          type: string
+          readOnly: true
+      required:
+        - password
+        - token
+        - username
+    ContactPerson:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the contact person
+          maxLength: 100
+        phone:
+          type: string
+          description: Phone number of the contact person
+          maxLength: 20
+        email:
+          type: string
+          format: email
+          description: Email address of the contact person
+          maxLength: 255
+      required:
+        - email
+        - name
+        - phone
+    Harbour:
+      type: object
+      description: Serializer for the harbour model.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+          description: Public unique identifier for the record
+        name:
+          type: string
+          description: Harbour name
+          maxLength: 100
+        berth_depth_max:
+          type: number
+          format: double
+          minimum: 0.0
+          title: Maximum berth depth
+          description: Maximum berth depth in meters
+        harbour_master:
+          type: string
+          description: Name of the harbour master
+          maxLength: 100
+        location:
+          $ref: '#/components/schemas/Location'
+        ships_in_harbour:
+          type: string
+          readOnly: true
+        vts_centre:
+          type: string
+          readOnly: true
+      required:
+        - berth_depth_max
+        - harbour_master
+        - id
+        - location
+        - name
+        - ships_in_harbour
+        - uuid
+        - vts_centre
+    HarbourList:
+      type: object
+      description: List serializer for the harbour model.
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          description: Harbour name
+          maxLength: 100
+        berth_depth_max:
+          type: number
+          format: double
+          minimum: 0.0
+          title: Maximum berth depth
+          description: Maximum berth depth in meters
+      required:
+        - berth_depth_max
+        - id
+        - name
+        - url
+    Location:
+      type: object
+      description: Serializer for the location model.
+      properties:
+        city:
+          type: string
+          description: City name
+          maxLength: 100
+        country:
+          type: string
+          description: Country name
+          maxLength: 100
+      required:
+        - city
+        - country
+    OperatingCompany:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the operating company
+          maxLength: 100
+        contact_person:
+          $ref: '#/components/schemas/ContactPerson'
+      required:
+        - name
+    PatchedHarbour:
+      type: object
+      description: Serializer for the harbour model.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+          description: Public unique identifier for the record
+        name:
+          type: string
+          description: Harbour name
+          maxLength: 100
+        berth_depth_max:
+          type: number
+          format: double
+          minimum: 0.0
+          title: Maximum berth depth
+          description: Maximum berth depth in meters
+        harbour_master:
+          type: string
+          description: Name of the harbour master
+          maxLength: 100
+        location:
+          $ref: '#/components/schemas/Location'
+        ships_in_harbour:
+          type: string
+          readOnly: true
+        vts_centre:
+          type: string
+          readOnly: true
+    PatchedShip:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the ship
+          maxLength: 100
+        tonnage:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          description: in metric tons
+        draft_max_load:
+          type: number
+          format: double
+          title: Draft under maximum load
+          description: Draft under maximum load in meters
+        draft_dry:
+          type: number
+          format: double
+          description: Draft without load in meters
+        type:
+          allOf:
+            - $ref: '#/components/schemas/TypeEnum'
+          description: |-
+            Type of the ship
+
+            * `bulk_carrier` - Bulk carrier
+            * `fishing` - Fishing
+            * `submarine` - Submarine
+            * `tanker` - Tanker
+            * `cruise_ship` - Cruise ship
+        beam:
+          type: number
+          format: double
+          description: Beam in meters
+        length:
+          type: number
+          format: double
+          description: Length in meters
+        flag:
+          type: string
+          description: String representation of the flag
+          maxLength: 100
+        year_built:
+          type: integer
+          maximum: 2100
+          minimum: 1900
+          description: Year the ship was built
+        operating_company:
+          $ref: '#/components/schemas/OperatingCompany'
+        ship_movements:
+          type: array
+          items:
+            type: string
+          readOnly: true
+        visited_harbours:
+          type: string
+          readOnly: true
+    PatchedShipMovement:
+      type: object
+      properties:
+        ship:
+          $ref: '#/components/schemas/Ship'
+        harbour:
+          $ref: '#/components/schemas/Harbour'
+        entered_at:
+          type: string
+          format: date-time
+        exited_at:
+          type: string
+          format: date-time
+    Ship:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the ship
+          maxLength: 100
+        tonnage:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          description: in metric tons
+        draft_max_load:
+          type: number
+          format: double
+          title: Draft under maximum load
+          description: Draft under maximum load in meters
+        draft_dry:
+          type: number
+          format: double
+          description: Draft without load in meters
+        type:
+          allOf:
+            - $ref: '#/components/schemas/TypeEnum'
+          description: |-
+            Type of the ship
+
+            * `bulk_carrier` - Bulk carrier
+            * `fishing` - Fishing
+            * `submarine` - Submarine
+            * `tanker` - Tanker
+            * `cruise_ship` - Cruise ship
+        beam:
+          type: number
+          format: double
+          description: Beam in meters
+        length:
+          type: number
+          format: double
+          description: Length in meters
+        flag:
+          type: string
+          description: String representation of the flag
+          maxLength: 100
+        year_built:
+          type: integer
+          maximum: 2100
+          minimum: 1900
+          description: Year the ship was built
+        operating_company:
+          $ref: '#/components/schemas/OperatingCompany'
+        ship_movements:
+          type: array
+          items:
+            type: string
+          readOnly: true
+        visited_harbours:
+          type: string
+          readOnly: true
+      required:
+        - beam
+        - draft_dry
+        - draft_max_load
+        - flag
+        - length
+        - name
+        - ship_movements
+        - tonnage
+        - type
+        - visited_harbours
+        - year_built
+    ShipList:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        name:
+          type: string
+          description: Name of the ship
+          maxLength: 100
+        tonnage:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          description: in metric tons
+        draft_max_load:
+          type: number
+          format: double
+          title: Draft under maximum load
+          description: Draft under maximum load in meters
+        draft_dry:
+          type: number
+          format: double
+          description: Draft without load in meters
+        type:
+          allOf:
+            - $ref: '#/components/schemas/TypeEnum'
+          description: |-
+            Type of the ship
+
+            * `bulk_carrier` - Bulk carrier
+            * `fishing` - Fishing
+            * `submarine` - Submarine
+            * `tanker` - Tanker
+            * `cruise_ship` - Cruise ship
+        beam:
+          type: number
+          format: double
+          description: Beam in meters
+        length:
+          type: number
+          format: double
+          description: Length in meters
+        flag:
+          type: string
+          description: String representation of the flag
+          maxLength: 100
+        year_built:
+          type: integer
+          maximum: 2100
+          minimum: 1900
+          description: Year the ship was built
+        age:
+          type: string
+          readOnly: true
+      required:
+        - age
+        - beam
+        - draft_dry
+        - draft_max_load
+        - flag
+        - length
+        - name
+        - tonnage
+        - type
+        - url
+        - year_built
+    ShipMovement:
+      type: object
+      properties:
+        ship:
+          $ref: '#/components/schemas/Ship'
+        harbour:
+          $ref: '#/components/schemas/Harbour'
+        entered_at:
+          type: string
+          format: date-time
+        exited_at:
+          type: string
+          format: date-time
+      required:
+        - entered_at
+        - harbour
+        - ship
+    ShipMovementDetail:
+      type: object
+      properties:
+        ship:
+          type: string
+          readOnly: true
+        harbour:
+          type: string
+          readOnly: true
+        entered_at:
+          type: string
+          format: date-time
+        exited_at:
+          type: string
+          format: date-time
+      required:
+        - entered_at
+        - harbour
+        - ship
+    ShipMovementList:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        ship:
+          type: string
+          readOnly: true
+        harbour:
+          type: string
+          readOnly: true
+        entered_at:
+          type: string
+          format: date-time
+        exited_at:
+          type: string
+          format: date-time
+      required:
+        - entered_at
+        - exited_at
+        - harbour
+        - ship
+        - url
+    TypeEnum:
+      enum:
+        - bulk_carrier
+        - fishing
+        - submarine
+        - tanker
+        - cruise_ship
+      type: string
+      description: |-
+        * `bulk_carrier` - Bulk carrier
+        * `fishing` - Fishing
+        * `submarine` - Submarine
+        * `tanker` - Tanker
+        * `cruise_ship` - Cruise ship
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"

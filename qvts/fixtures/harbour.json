@@ -1,0 +1,127 @@
+[
+  {
+    "model": "harbours.Harbour",
+    "pk": 1,
+    "fields": {
+      "name": "Port of New York",
+      "berth_depth_max": 15.5,
+      "harbour_master": "Captain Ahab",
+      "location": 1,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "harbours.Harbour",
+    "pk": 2,
+    "fields": {
+      "name": "Port of Tokyo",
+      "berth_depth_max": 18.0,
+      "harbour_master": "Captain Tsubasa",
+      "location": 2,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "harbours.Harbour",
+    "pk": 3,
+    "fields": {
+      "name": "Port of London",
+      "berth_depth_max": 12.0,
+      "harbour_master": "Captain Hook",
+      "location": 3,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "harbours.Harbour",
+    "pk": 4,
+    "fields": {
+      "name": "Port of Paris",
+      "berth_depth_max": 10.0,
+      "harbour_master": "Captain Nemo",
+      "location": 4,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "harbours.Harbour",
+    "pk": 5,
+    "fields": {
+      "name": "Port of Berlin",
+      "berth_depth_max": 8.0,
+      "harbour_master": "Captain Sparrow",
+      "location": 5,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "harbours.Harbour",
+    "pk": 6,
+    "fields": {
+      "name": "Port of Mackay",
+      "berth_depth_max": 14.0,
+      "harbour_master": "Captain Cook",
+      "location": 6,
+      "vts_centre": 1,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "harbours.Harbour",
+    "pk": 7,
+    "fields": {
+      "name": "Port of Brisbane",
+      "berth_depth_max": 16.0,
+      "harbour_master": "Captain Bligh",
+      "location": 7,
+      "vts_centre": 1,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "harbours.Harbour",
+    "pk": 8,
+    "fields": {
+      "name": "Port of Cairns",
+      "berth_depth_max": 17.0,
+      "harbour_master": "Captain Kidd",
+      "location": 8,
+      "vts_centre": 1,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "harbours.Harbour",
+    "pk": 9,
+    "fields": {
+      "name": "Port of Gladstone",
+      "berth_depth_max": 18.0,
+      "harbour_master": "Captain Morgan",
+      "location": 9,
+      "vts_centre": 1,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "harbours.Harbour",
+    "pk": 10,
+    "fields": {
+      "name": "Port of Townsville",
+      "berth_depth_max": 19.0,
+      "harbour_master": "Captain Blackbeard",
+      "location": 10,
+      "vts_centre": 1,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  }
+]

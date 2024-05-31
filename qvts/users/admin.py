@@ -4,6 +4,8 @@ from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
 from django.utils.translation import gettext_lazy as _
 
+from qvts.vts.models import Operator
+
 from .forms import UserAdminChangeForm
 from .forms import UserAdminCreationForm
 from .models import User
@@ -15,10 +17,28 @@ if settings.DJANGO_ADMIN_FORCE_ALLAUTH:
     admin.site.login = secure_admin_login(admin.site.login)  # type: ignore[method-assign]
 
 
+class UserOperatorInline(admin.TabularInline):
+    model = Operator
+    readonly_fields = ("role", "vts_centre")
+    show_change_link = True
+    can_delete = False
+    fields = ("role", "vts_centre")
+
+    def has_add_permission(self, request, obj):
+        return False
+
+
 @admin.register(User)
 class UserAdmin(auth_admin.UserAdmin):
+    inlines = (UserOperatorInline,)
     form = UserAdminChangeForm
     add_form = UserAdminCreationForm
+    readonly_fields = (
+        "created_at",
+        "updated_at",
+        "uuid",
+        "last_login",
+    )
     fieldsets = (
         (None, {"fields": ("email", "password")}),
         (
@@ -28,6 +48,19 @@ class UserAdmin(auth_admin.UserAdmin):
                     "first_name",
                     "last_name",
                 ),
+                "classes": ["wide", "extrapretty"],
+            },
+        ),
+        (
+            _("Metadata"),
+            {
+                "fields": (
+                    "uuid",
+                    "last_login",
+                    "created_at",
+                    "updated_at",
+                ),
+                "classes": ["wide", "extrapretty"],
             },
         ),
         (
@@ -40,11 +73,12 @@ class UserAdmin(auth_admin.UserAdmin):
                     "groups",
                     "user_permissions",
                 ),
+                "classes": ["wide", "extrapretty"],
             },
         ),
-        (_("Important dates"), {"fields": ("last_login", "date_joined")}),
     )
-    list_display = ["email", "first_name", "last_name", "is_superuser"]
+    list_display = ["id", "email", "first_name", "last_name", "is_superuser", "operator"]
+    list_display_links = ["id", "email"]
     search_fields = ["first_name", "last_name"]
     ordering = ["id"]
     add_fieldsets = (

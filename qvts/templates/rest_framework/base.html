@@ -1,0 +1,28 @@
+{% extends "rest_framework/base.html" %}
+
+{% load static %}
+
+{% block title %}
+  QVTS API Endpoints
+{% endblock title %}
+{% block meta %}
+  {{ block.super }}
+  <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}" />
+  <link rel="apple-touch-icon"
+        sizes="180x180"
+        href="{% static 'images/favicons/apple-touch-icon.png' %}" />
+  <link rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="{% static 'images/favicons/favicon-32x32.png' %}" />
+  <link rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="{% static 'images/favicons/favicon-16x16.png' %}" />
+  <link rel="shortcut icon"
+        type="image/x-icon"
+        href="{% static 'images/favicons/favicon.ico' %}" />
+{% endblock meta %}
+{% block branding %}
+  <a class="navbar-brand" rel="nofollow" href='#'>QVTS API Endpoints</a>
+{% endblock branding %}
